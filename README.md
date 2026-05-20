@@ -1,0 +1,2 @@
+# pocket_album
+Pocket Album ⚽ | Copa do Mundo 2026 Aplicação mobile gamificada que reimagina a experiência dos álbuns de figurinhas físicos no ambiente digital. Este projeto é a entrega final do 2º bimestre da disciplina de Programação para Dispositivos Móveis I (PDMI) na Fatec Zona Leste. Tecnologias: React Native (Expo), Node.js, Express e Supabase. Foco: Arquitetura em camadas, UX imersiva e integração com BaaS.
