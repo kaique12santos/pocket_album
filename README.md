@@ -1,2 +1,15 @@
-# pocket_album
-Pocket Album ⚽ | Copa do Mundo 2026 Aplicação mobile gamificada que reimagina a experiência dos álbuns de figurinhas físicos no ambiente digital. Este projeto é a entrega final do 2º bimestre da disciplina de Programação para Dispositivos Móveis I (PDMI) na Fatec Zona Leste. Tecnologias: React Native (Expo), Node.js, Express e Supabase. Foco: Arquitetura em camadas, UX imersiva e integração com BaaS.
+# ⚽ Pocket Album - Álbum Digital Interativo
+
+### 🎓 Contexto Acadêmico
+- **Instituição:** Fatec Zona Leste - São Paulo, SP
+- **Disciplina:** Programação para Dispositivos Móveis I (PDMI)
+- **Avaliação:** Projeto Prático - 2º Bimestre / 2026
+- **Equipe:** Kaique Caitano & Miguel Gomes
+
+### 🚀 O Projeto
+O Pocket Album é uma solução mobile voltada para a Copa do Mundo de 2026, focada em gamificação (mecânica 'Quem é esse Pokémon?') e colecionismo digital.
+
+### 🛠️ Arquitetura & Stack
+- **Frontend:** React Native (Expo) - Arquitetura baseada em Componentes/Hooks.
+- **Backend:** Node.js + Express - Arquitetura em Camadas (Controller/Service).
+- **Banco de Dados:** PostgreSQL via Supabase (BaaS).
