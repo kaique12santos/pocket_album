@@ -22,7 +22,7 @@ export default function App() {
     <View style={styles.container}>
       {session ? (
         <View style={styles.dashboard}>
-          <Text style={styles.successText}>✅ Autenticado!</Text>
+          <Text style={styles.successText}>✅ Autenticado!  </Text>
           <Text style={styles.subText}>Bem-vindo, {session.user.email}</Text>
           
           <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
