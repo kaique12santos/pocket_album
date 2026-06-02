@@ -15,6 +15,7 @@ import AuthScreen from './src/screens/AuthScreen';
 import Home from './src/screens/Home/home';
 import About from './src/screens/about/about';
 import Brasil from './src/screens/Brasil/brasil';
+import GuessPlayer from './src/screens/GuessPlayer/player';
 
 export default function App() {
   const { session, loading, initAuthListener, signOut } = useAuthStore();
@@ -44,6 +45,10 @@ export default function App() {
   }
 
   if (session) {
+    if (currentScreen === 'guess-player') {
+      return <GuessPlayer onNavigate={handleNavigate} onSignOut={signOut} />;
+    }
+
     if (currentScreen === 'brasil') {
       return <Brasil onNavigate={handleNavigate} onSignOut={signOut} />;
     }

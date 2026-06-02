@@ -16,7 +16,7 @@ const menuItems = [
   { key: 'album', label: 'Meu Album', Icon: FaBookOpen },
   { key: 'brasil', label: 'Brasil Penta', Icon: FaFlag, target: 'brasil' },
   { key: 'quiz', label: 'Quiz Craque', Icon: FaStar },
-  { key: 'guess-player', label: 'Quem e esse jogador', Icon: FaQuestionCircle },
+  { key: 'guess-player', label: 'Quem e esse jogador', Icon: FaQuestionCircle, target: 'guess-player' },
   { key: 'about', label: 'Info sobre o App', Icon: FaInfoCircle, separated: true, target: 'about' },
 ];
 

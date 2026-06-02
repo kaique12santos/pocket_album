@@ -41,6 +41,7 @@ const cards = [
     Icon: FaSearch,
     title: 'Quem e o\nJogador?',
     variant: 'dark',
+    target: 'guess-player',
   },
 ];
 

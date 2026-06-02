@@ -42,6 +42,10 @@ export default function BottomMenu({ onNavigate }) {
               if (item.key === 'info' && onNavigate) {
                 onNavigate('about');
               }
+
+              if (item.key === 'games' && onNavigate) {
+                onNavigate('guess-player');
+              }
             }}
             style={[styles.item, index === 1 && styles.leftOfBadge, index === 2 && styles.rightOfBadge]}
           >
