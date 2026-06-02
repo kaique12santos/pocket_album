@@ -21,6 +21,7 @@ const cards = [
     Icon: FaTrophy,
     title: 'Copa 2026',
     variant: 'dark',
+    target: 'world-cup-26',
   },
   {
     key: 'brasil',

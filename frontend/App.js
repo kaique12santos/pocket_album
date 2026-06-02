@@ -16,6 +16,7 @@ import Home from './src/screens/Home/home';
 import About from './src/screens/about/about';
 import Brasil from './src/screens/Brasil/brasil';
 import GuessPlayer from './src/screens/GuessPlayer/player';
+import WorldCup26 from './src/screens/WorldCup26';
 
 export default function App() {
   const { session, loading, initAuthListener, signOut } = useAuthStore();
@@ -45,6 +46,10 @@ export default function App() {
   }
 
   if (session) {
+    if (currentScreen === 'world-cup-26') {
+      return <WorldCup26 onNavigate={handleNavigate} onSignOut={signOut} />;
+    }
+
     if (currentScreen === 'guess-player') {
       return <GuessPlayer onNavigate={handleNavigate} onSignOut={signOut} />;
     }

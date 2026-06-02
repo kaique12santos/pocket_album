@@ -8,11 +8,13 @@ import {
   FaQuestionCircle,
   FaSignOutAlt,
   FaStar,
+  FaTrophy,
 } from 'react-icons/fa';
 import styles from './styles';
 
 const menuItems = [
   { key: 'home', label: 'Pagina Inicial', Icon: FaHome, target: 'home' },
+  { key: 'world-cup-26', label: 'Copa 2026', Icon: FaTrophy, target: 'world-cup-26' },
   { key: 'album', label: 'Meu Album', Icon: FaBookOpen },
   { key: 'brasil', label: 'Brasil Penta', Icon: FaFlag, target: 'brasil' },
   { key: 'quiz', label: 'Quiz Craque', Icon: FaStar },

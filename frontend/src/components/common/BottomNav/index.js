@@ -22,12 +22,20 @@ function MenuIcon({ Icon }) {
 export default function BottomMenu({ onNavigate }) {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.centerBadge}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.centerBadge}
+        onPress={() => {
+          if (onNavigate) {
+            onNavigate('world-cup-26');
+          }
+        }}
+      >
         <View style={styles.centerCutout}>
           <View style={styles.centerStripe} />
           <Image source={fifaBadge} style={styles.centerImage} resizeMode="contain" />
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.container}>
         {items.map((item, index) => (
