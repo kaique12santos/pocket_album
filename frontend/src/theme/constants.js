@@ -12,7 +12,10 @@ export const THEME = {
     surface: '#1e1e1e',
   },
   typography: {
-    fontFamily: 'Roboto',
+    heading: 'Anybody_900Black',
+    highlight: 'Anybody_800ExtraBold',
+    body: 'ArchivoNarrow_400Regular',
+    label: 'ArchivoNarrow_700Bold',
     fontSize: {
       small: 12,
       medium: 14,

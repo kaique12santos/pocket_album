@@ -81,11 +81,11 @@ export default function AuthScreen() {
 
 const styles = StyleSheet.create({
   container: { width: '100%', maxWidth: 400, padding: 20, backgroundColor: '#2a2a2a', borderRadius: 10 },
-  title: { fontSize: 24, fontWeight: 'bold', color: '#fff', marginBottom: 20, textAlign: 'center' },
-  input: { backgroundColor: '#1a1a1a', color: '#fff', padding: 15, borderRadius: 8, marginBottom: 15, borderWidth: 1, borderColor: '#333' },
+  title: { fontSize: 24, fontFamily: 'Anybody_900Black', color: '#fff', marginBottom: 20, textAlign: 'center' },
+  input: { backgroundColor: '#1a1a1a', color: '#fff', padding: 15, borderRadius: 8, marginBottom: 15, borderWidth: 1, borderColor: '#333', fontFamily: 'ArchivoNarrow_600SemiBold' },
   button: { backgroundColor: '#00C851', padding: 15, borderRadius: 8, alignItems: 'center', marginBottom: 15 },
-  buttonText: { color: '#000', fontWeight: 'bold', fontSize: 16 },
+  buttonText: { color: '#000', fontFamily: 'Anybody_800ExtraBold', fontSize: 16 },
   toggleButton: { alignItems: 'center', padding: 10 },
-  toggleText: { color: '#aaa', fontSize: 14 },
-  errorText: { color: '#ff4444', marginBottom: 15, textAlign: 'center' }
+  toggleText: { color: '#aaa', fontSize: 14, fontFamily: 'ArchivoNarrow_600SemiBold' },
+  errorText: { color: '#ff4444', marginBottom: 15, textAlign: 'center', fontFamily: 'ArchivoNarrow_600SemiBold' }
 });
