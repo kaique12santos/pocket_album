@@ -1,46 +1,144 @@
-import { useEffect } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { useAuthStore } from './src/store/useAuthStore';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, ActivityIndicator, Platform } from 'react-native';
+import { supabase } from './src/services/supabase';
+import { LoadSkiaWeb } from '@shopify/react-native-skia/lib/module/web';
+import { Asset } from 'expo-asset';
+
+// --- FONTES DO MIGUEL ---
+import { useFonts } from 'expo-font';
+import { Anybody_800ExtraBold, Anybody_900Black } from '@expo-google-fonts/anybody';
+import { ArchivoNarrow_400Regular, ArchivoNarrow_600SemiBold, ArchivoNarrow_700Bold } from '@expo-google-fonts/archivo-narrow';
+
+// --- AS NOSSAS TELAS (Fluxo de Entrada e Skia) ---
+import CoverScreen from './src/screens/CoverScreen';
 import AuthScreen from './src/screens/AuthScreen';
+import PremiumPack from './src/components/Album/PremiumPack';
+import AlbumScreen from './src/screens/AlbumScreen';
+import QuizScreen from './src/screens/QuizScreen';
+import GamesScreen from './src/screens/GamesScreen';
+import PasteScreen from './src/screens/PasteScreen'; 
+import TouristSpots from './src/screens/googleMaps/TouristspotsScreen';
+
+
+// --- AS TELAS DO MIGUEL (Telas Internas) ---
+// (Certifique-se de que os caminhos batem com a pasta que você baixou)
+import Home from './src/screens/Home/home';
+import About from './src/screens/about/about';
+import Brasil from './src/screens/Brasil/brasil';
+import WorldCup26 from './src/screens/WorldCup26';
+import Player from './src/screens/GuessPlayer/player'; // <-- Nossa Tela Skia, que vai substituir a GuessPlayer do Miguel depois
+// Vamos usar o nosso "WhoIsThatPlayer" com Skia no lugar do "GuessPlayer" dele depois,
+// mas vou deixar a rota preparada.
 
 export default function App() {
-  const { session, loading, initAuthListener, signOut } = useAuthStore();
-
+  // --- ZONA DE DECLARAÇÃO DE HOOKS ---
+  // Todos os Hooks devem estar aqui no topo, sem interrupções!
+  
+  const [skiaReady, setSkiaReady] = useState(Platform.OS !== 'web');
+  const [currentScreen, setCurrentScreen] = useState('cover'); 
+  const [isInitializing, setIsInitializing] = useState(true);
+  const [navData, setNavData] = useState(null);
+  // Hook do Skia
   useEffect(() => {
-    initAuthListener();
+    if (Platform.OS === 'web') {
+      try {
+        const wasmModule = require('canvaskit-wasm/bin/full/canvaskit.wasm');
+        const wasmUri = Asset.fromModule(wasmModule).uri;
+        LoadSkiaWeb({ locateFile: () => wasmUri })
+          .then(() => setSkiaReady(true))
+          .catch(err => console.error("Erro interno do Skia:", err));
+      } catch (error) {
+        console.error("Erro ao localizar o arquivo WASM:", error);
+      }
+    }
   }, []);
 
-  if (loading && !session) {
+  // Hook das Fontes (Precisava subir para cá!)
+  const [fontsLoaded] = useFonts({
+    Anybody_800ExtraBold,
+    Anybody_900Black,
+    ArchivoNarrow_400Regular,
+    ArchivoNarrow_600SemiBold,
+    ArchivoNarrow_700Bold,
+  });
+
+   const checkUserSession = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setCurrentScreen('home');
+    } else {
+      setCurrentScreen('cover');
+    }
+    setIsInitializing(false);
+  };
+
+
+  // Hook da Sessão
+  useEffect(() => {
+    checkUserSession();
+  }, []);
+
+  // --- ZONA DE SAÍDA (LOADING) ---
+  // Agora sim, após declarar todos os Hooks, podemos retornar as telas de loading.
+  
+  if (!skiaReady) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#00ff00" />
+      <View style={{ flex: 1, backgroundColor: '#181818', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#FFD60A" />
       </View>
     );
   }
 
-  return (
-    <View style={styles.container}>
-      {session ? (
-        <View style={styles.dashboard}>
-          <Text style={styles.successText}>✅ Autenticado!</Text>
-          <Text style={styles.subText}>Bem-vindo, {session.user.email}</Text>
-          
-          <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
-            <Text style={styles.logoutText}>Sair</Text>
-          </TouchableOpacity>
-        </View>
-      ) : (
-        <AuthScreen />
-      )}
+  if (!fontsLoaded || isInitializing) {
+    return (
+      <View style={styles.centeredContainer}>
+        <ActivityIndicator size="large" color="#FFDF00" />
+      </View>
+    );
+  }
+
+  // --- FUNÇÕES E LÓGICA DE NAVEGAÇÃO ---
+ 
+  const handleNavigate = (screen, data = null) => {
+    setNavData(data);
+    setCurrentScreen(screen);
+  };
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    setCurrentScreen('cover');
+  };
+
+  // --- ROTEAMENTO FINAL ---
+  if (currentScreen === 'cover') return <CoverScreen onNavigate={() => handleNavigate('auth')} />;
+  if (currentScreen === 'auth') return <AuthScreen onLoginSuccess={() => handleNavigate('home')} />;
+  if (currentScreen === 'home') return <Home onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+  
+  if (currentScreen === 'pack') {
+  return skiaReady ? (
+    <PremiumPack onNavigate={handleNavigate} /> // <-- Deixe o handleNavigate limpo aqui!
+  ) : (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" color="#FFDF00" />
     </View>
   );
 }
+  if (currentScreen === 'album') return <AlbumScreen onNavigate={() => handleNavigate('home')} />;
+  if (currentScreen === 'quiz') return <QuizScreen onNavigate={() => handleNavigate('home')} />;
+  if (currentScreen === 'who-is-that-player') return <Player onNavigate={() => handleNavigate('home')} />;
+  if (currentScreen === 'games') return <GamesScreen onNavigate={handleNavigate} />;
+  if (currentScreen === 'colagem') return <PasteScreen stickers={navData} onNavigate={handleNavigate} />;
+  if (currentScreen === 'world-cup-26') return <WorldCup26 onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+  if (currentScreen === 'brasil') return <Brasil onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+  if (currentScreen === 'about') return <About onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+  if (currentScreen === 'tourist-spots') return <TouristSpots onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+  return <Home onNavigate={handleNavigate} onSignOut={handleSignOut} />;
+}
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#1a1a1a', justifyContent: 'center', alignItems: 'center', padding: 20 },
-  dashboard: { alignItems: 'center' },
-  successText: { color: '#00C851', fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
-  subText: { color: '#aaa', fontSize: 16, marginBottom: 30 },
-  logoutButton: { backgroundColor: '#ff4444', paddingHorizontal: 20, paddingVertical: 10, borderRadius: 8 },
-  logoutText: { color: '#fff', fontWeight: 'bold' }
+  centeredContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0a0a0a',
+  },
 });

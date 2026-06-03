@@ -11,5 +11,4 @@ O Pocket Album é uma solução mobile voltada para a Copa do Mundo de 2026, foc
 
 ### 🛠️ Arquitetura & Stack
 - **Frontend:** React Native (Expo) - Arquitetura baseada em Componentes/Hooks.
-- **Backend:** Node.js + Express - Arquitetura em Camadas (Controller/Service).
 - **Banco de Dados:** PostgreSQL via Supabase (BaaS).
