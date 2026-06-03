@@ -21,18 +21,16 @@ import TouristSpots from './src/screens/googleMaps/TouristspotsScreen';
 
 
 // --- AS TELAS DO MIGUEL (Telas Internas) ---
-// (Certifique-se de que os caminhos batem com a pasta que você baixou)
 import Home from './src/screens/Home/home';
 import About from './src/screens/about/about';
 import Brasil from './src/screens/Brasil/brasil';
 import WorldCup26 from './src/screens/WorldCup26';
-import Player from './src/screens/GuessPlayer/player'; // <-- Nossa Tela Skia, que vai substituir a GuessPlayer do Miguel depois
-// Vamos usar o nosso "WhoIsThatPlayer" com Skia no lugar do "GuessPlayer" dele depois,
-// mas vou deixar a rota preparada.
+import Player from './src/screens/GuessPlayer/player'; 
+
 
 export default function App() {
   // --- ZONA DE DECLARAÇÃO DE HOOKS ---
-  // Todos os Hooks devem estar aqui no topo, sem interrupções!
+ 
   
   const [skiaReady, setSkiaReady] = useState(Platform.OS !== 'web');
   const [currentScreen, setCurrentScreen] = useState('cover'); 
