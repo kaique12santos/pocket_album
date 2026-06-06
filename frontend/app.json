@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Pocket Album 2026",
+    "slug": "pocket-album",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,10 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/Pocket_Album-Logo-Bgr.png",
+      "name": "Pocket Album 2026",
+      "shortName": "PocketAlbum",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-font",
