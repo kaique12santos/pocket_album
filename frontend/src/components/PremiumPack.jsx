@@ -60,7 +60,7 @@ export default function PremiumPack({ onNavigate }) {
     <View style={styles.container}>
       {!isOpened ? (
         <Animated.View style={[styles.centerWrapper, { transform: [{ translateY: entryY }] }]}>
-          <Text style={styles.instruction}>SEGURE PARA ABRIR</Text>
+          <Text style={styles.instruction}>SEGURE E SACUDA PARA ABRIR</Text>
           
           <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
             <Animated.View style={{ transform: [{ translateX: shake }, { scale: packScale }], opacity: packOpacity }}>
