@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, Animated, Easing } from 'react-native';
 
-const NUM_CONFETTI = 35; // Ponto de equilíbrio perfeito entre visual e performance web
+const NUM_CONFETTI = 15; // Ponto de equilíbrio perfeito entre visual e performance web
 const COLORS = ['#009B3A', '#FEDF00', '#002776', '#FFFFFF'];
 
 export default function ConfettiExplosion() {
