@@ -105,7 +105,7 @@ export default function PremiumPack({ onNavigate }) {
         <Animated.View style={[styles.centerWrapper, { transform: [{ translateY: entryY }] }]}>
           
           <Text style={styles.instruction}>
-            {isFetching ? "PROCESSANDO..." : "SEGURE PARA ABRIR"}
+            {isFetching ? "PROCESSANDO..." : "SEGURE E SACUDA PARA ABRIR"}
           </Text>
           
           <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut} disabled={isFetching}>

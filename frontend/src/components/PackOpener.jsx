@@ -56,7 +56,7 @@ export default function PackOpener({ packColor = '#ffbb33' }) {
 
       {!isOpened ? (
         <>
-          <Text style={styles.instruction}>Segure o pacote para abrir</Text>
+          <Text style={styles.instruction}>Segure e sacuda o pacote para abrir</Text>
           <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
             <Animated.View style={[styles.pack, { backgroundColor: packColor, transform: [{ translateX: shake }] }]}>
               <Text style={styles.packText}>PACOTE</Text>
