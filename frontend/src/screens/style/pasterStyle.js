@@ -12,7 +12,7 @@ export default StyleSheet.create({
     borderBottomWidth: 4, 
     borderColor: '#006B35' 
   },
-  title: { color: '#FFD60A', fontSize: 24, fontFamily: 'Anybody_900Black', marginBottom: 5 },
+  title: { color: '#FFD60A', fontSize: 24, fontFamily: 'Anybody_900Black', marginBottom: 5 ,marginLeft: 10},
   subtitle: { color: '#A7E5B2', fontSize: 14, fontFamily: 'Anybody_800ExtraBold', marginBottom: 30 },
   slotsContainer: { flexDirection: 'row', justifyContent: 'center', gap: 15 },
   

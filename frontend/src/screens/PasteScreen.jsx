@@ -15,7 +15,7 @@ export default function PasteScreen({ stickers = [], onNavigate }) {
       <View style={styles.albumArea}>
         <Text style={styles.title}>COLE SUAS NOVAS FIGURINHAS!</Text>
         <Text style={styles.subtitle}>Arraste os cards para a área acima</Text>
-        
+        <Text style={styles.subtitle}>depois toque neles para revelar o jogador</Text>
         <View style={styles.slotsContainer}>
           {stickers.map((_, index) => (
             <View key={`slot-${index}`} style={styles.slot} />
